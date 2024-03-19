@@ -41,53 +41,53 @@ This README serves as a quick reference guide for automating CATIA V5 using C# a
 ```
 
 - **Create Line:**
-  ```csharp
-    HybridShapeLinePtPt line = hybridShapeFactory.AddNewLinePtPt(point1, point2);
-    part.Update();
-  ```
+```csharp
+  HybridShapeLinePtPt line = hybridShapeFactory.AddNewLinePtPt(point1, point2);
+  part.Update();
+```
 
 - **Create Circle:**
-  ```csharp
-    HybridShapeCircle circle = hybridShapeFactory.AddNewCircleCtrRad(pointCenter, normal, radius);
-    part.Update();
-  ```
+```csharp
+  HybridShapeCircle circle = hybridShapeFactory.AddNewCircleCtrRad(pointCenter, normal, radius);
+  part.Update();
+```
 
 ## Modifying Geometric Elements:
 
 - **Translate/Rotate/Scale:**
-  ```csharp
-    HybridShapeTranslation translation = hybridShapeFactory.AddNewTranslation(line, translationVector);
-    translation.Value = translationValue;
-    part.Update();
-  ```
+```csharp
+  HybridShapeTranslation translation = hybridShapeFactory.AddNewTranslation(line, translationVector);
+  translation.Value = translationValue;
+  part.Update();
+```
 
 - **Edit Parameters:**
-  ```csharp
-    Parameters parameters = part.Parameters;
-    Parameter param = parameters.Item("ParameterName");
-    param.Value = newValue;
-    part.Update();
-  ```
+```csharp
+  Parameters parameters = part.Parameters;
+  Parameter param = parameters.Item("ParameterName");
+  param.Value = newValue;
+  part.Update();
+```
 
 ## Working with Assemblies:
 
 - **Create Assembly Document:**
-  ```csharp
-    ProductDocument productDoc = (ProductDocument)catiaApp.Documents.Add("Product");
-  ```
+```csharp
+  ProductDocument productDoc = (ProductDocument)catiaApp.Documents.Add("Product");
+```
 
 - **Insert Part into Assembly:**
-  ```csharp
-    Product product = productDoc.Product;
-    product.AddItem(partDoc);
-  ```
+```csharp
+  Product product = productDoc.Product;
+  product.AddItem(partDoc);
+```
 
 - **Manipulate Assembly Components:**
-  ```csharp
-    Products products = product.Products;
-    Product component = products.Item(index);
-    // Manipulate component
-  ```
+```csharp
+  Products products = product.Products;
+  Product component = products.Item(index);
+  // Manipulate component
+```
 
 ## Error Handling:
 
