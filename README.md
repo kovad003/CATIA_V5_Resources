@@ -110,3 +110,65 @@ This README serves as a quick reference guide for automating CATIA V5 using C# a
       catiaApp = null;
   }
 ```
+
+##Example:
+```csharp
+// Below is an example code snippet demonstrating how to accomplish this:
+
+using System;
+using System.Windows.Forms;
+using INFITF;
+using MECMOD;
+using ProductStructureTypeLib;
+
+namespace CatiaAutomation
+{
+    public partial class MainForm : Form
+    {
+        private INFITF.Application catiaApp;
+        private ProductDocument productDocument;
+        private PartDocument partDocument;
+
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        private void btnCreatePart_Click(object sender, EventArgs e)
+        {
+            // Connect to CATIA
+            try
+            {
+                catiaApp = (INFITF.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("CATIA.Application");
+            }
+            catch
+            {
+                MessageBox.Show("CATIA is not running or accessible.");
+                return;
+            }
+
+            // Create a new part document
+            catiaApp.Documents.Add("Part");
+
+            // Activate the product document
+            productDocument = (ProductDocument)catiaApp.ActiveDocument;
+
+            // Get the root product
+            Product rootProduct = productDocument.Product;
+
+            // Create a new part
+            partDocument = (PartDocument)catiaApp.ActiveDocument;
+            Part part = partDocument.Part;
+
+            // Add the part to the product structure
+            ProductStructureFactory productStructureFactory = (ProductStructureFactory)productDocument.GetItem("ProductStructureFactory");
+            productStructureFactory.AddComponent(part, rootProduct);
+            
+            // Refresh the product structure
+            productDocument.Update();
+            
+            MessageBox.Show("New part created and added to the product.");
+        }
+    }
+}
+```
