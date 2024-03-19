@@ -92,22 +92,21 @@ This README serves as a quick reference guide for automating CATIA V5 using C# a
 ## Error Handling:
 
 ```csharp
-    try
-    {
-        // CATIA operations
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Error: " + ex.Message);
-    }
+  try
+  {
+      // CATIA operations
+  }
+  catch (Exception ex)
+  {
+      MessageBox.Show("Error: " + ex.Message);
+  }
 ```
 
 ## Closing CATIA Application:
 ```csharp
-    Copy code
-    if (catiaApp != null)
-    {
-        catiaApp.Quit();
-        catiaApp = null;
-    }
+  if (catiaApp != null)
+  {
+      catiaApp.Quit();
+      catiaApp = null;
+  }
 ```
